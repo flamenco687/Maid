@@ -6,7 +6,14 @@
 /*.rbxl.lock
 /wally.lock
 
+# Moonwave page files
 /build
 
+# Node files
+/node_modules
+/package-lock.json
+/package.json
+
+# Files used when working
 /*.project.json
 /foreman.toml
