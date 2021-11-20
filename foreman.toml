@@ -1,0 +1,13 @@
+# This is Foreman's configuration file. You can edit it to tell Foreman about
+# new tools that you'd like to install, or to change versions of tools you
+# already have.
+
+# When adding new tools, make sure to run `foreman install` so that their
+# binaries are installed.
+
+# Put any tools you want to install here. To install Rojo 0.5.x, you'd use:
+# rojo = { source = "rojo-rbx/rojo", version = "0.5" }
+
+[tools]
+wally = { source = "UpliftGames/wally", version = "0.3.1" }
+rojo = { source = "rojo-rbx/rojo", version = "7.0.0-rc.3" }

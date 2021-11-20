@@ -1,0 +1,14 @@
+{
+  "name": "Maid",
+  "tree": {
+    "$className": "DataModel",
+
+    "ReplicatedStorage": {
+      "$className": "ReplicatedStorage",
+
+      "Maid": {
+        "$path": "init"
+      }
+    }
+  }
+}
