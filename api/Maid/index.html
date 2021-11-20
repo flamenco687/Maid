@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="generator" content="Docusaurus v2.0.0-beta.6">
+<title data-react-helmet="true">Maid | Maid</title><meta data-react-helmet="true" property="og:title" content="Maid | Maid"><meta data-react-helmet="true" name="twitter:card" content="summary_large_image"><meta data-react-helmet="true" name="description" content="Maids track Tasks and clean them when needed.
+
+For e.g:
+```lua
+local maid = Maid.new()
+local connection = workspace.ChildAdded:Connect(function()
+
+end)
+maid:Add(connection)
+maid:Cleanup()
+
+-- Connections aren&#x27;t necessarily immediately disconnected when `Disconnect` is called on the.
+-- Much reliable to check in the next engine execution step:
+task.defer(function()
+	print(connection.Connected) --&gt; false
+end)
+```"><meta data-react-helmet="true" property="og:description" content="Maids track Tasks and clean them when needed.
+
+For e.g:
+```lua
+local maid = Maid.new()
+local connection = workspace.ChildAdded:Connect(function()
+
+end)
+maid:Add(connection)
+maid:Cleanup()
+
+-- Connections aren&#x27;t necessarily immediately disconnected when `Disconnect` is called on the.
+-- Much reliable to check in the next engine execution step:
+task.defer(function()
+	print(connection.Connected) --&gt; false
+end)
+```"><meta data-react-helmet="true" property="og:url" content="https://flamenco687.github.io/Maid/api/Maid"><meta data-react-helmet="true" name="docusaurus_locale" content="en"><meta data-react-helmet="true" name="docusaurus_tag" content="default"><link data-react-helmet="true" rel="canonical" href="https://flamenco687.github.io/Maid/api/Maid"><link data-react-helmet="true" rel="alternate" href="https://flamenco687.github.io/Maid/api/Maid" hreflang="en"><link data-react-helmet="true" rel="alternate" href="https://flamenco687.github.io/Maid/api/Maid" hreflang="x-default"><link rel="stylesheet" href="/Maid/assets/css/styles.51efd671.css">
+<link rel="preload" href="/Maid/assets/js/runtime~main.8168edb9.js" as="script">
+<link rel="preload" href="/Maid/assets/js/main.f6146939.js" as="script">
+</head>
+<body>
+<script>!function(){function e(e){document.documentElement.setAttribute("data-theme",e)}var t=function(){var e=null;try{e=localStorage.getItem("theme")}catch(e){}return e}();null!==t?e(t):window.matchMedia("(prefers-color-scheme: dark)").matches?e("dark"):(window.matchMedia("(prefers-color-scheme: light)").matches,e("light"))}()</script><div id="__docusaurus">
+<div><a href="#" class="skipToContent_1oUP">Skip to main content</a></div><nav class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Navigation bar toggle" class="navbar__toggle clean-btn" type="button" tabindex="0"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/Maid/"><b class="navbar__title">Maid</b></a><a class="navbar__item navbar__link" href="/Maid/docs/intro">Docs</a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/Maid/api/">API</a></div><div class="navbar__items navbar__items--right"><a href="https://github.com/flamenco687/Maid" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link"><span>GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_3J9K"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></span></a><div class="react-toggle toggle_3Zt9 react-toggle--disabled"><div class="react-toggle-track" role="button" tabindex="-1"><div class="react-toggle-track-check"><span class="toggle_71bT">🌜</span></div><div class="react-toggle-track-x"><span class="toggle_71bT">🌞</span></div><div class="react-toggle-thumb"></div></div><input type="checkbox" class="react-toggle-screenreader-only" aria-label="Switch between dark and light mode"></div><div class="navbar__search"><span aria-label="expand searchbar" role="button" class="search-icon" tabindex="0"></span><input type="search" id="search_input_react" placeholder="Press S to Search..." aria-label="Search" class="navbar__search-input search-bar"></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div class="main-wrapper docPageContainer_2Kz0"><div class="docPage_1bdk"><div class="docSidebarContainer_1ykS"><div class="sidebar_15mo"><nav class="menu thin-scrollbar menu_Bmed menuWithAnnouncementBar_2WvA"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link menu__list-item"><a class="menu__link menu__link--active" aria-current="page" href="/Maid/api/Maid">​Maid</a></li></ul></nav><button type="button" title="Collapse sidebar" aria-label="Collapse sidebar" class="button button--secondary button--outline collapseSidebarButton_1CGd"><svg width="20" height="20" aria-hidden="true" class="collapseSidebarButtonIcon_3E-R"><g fill="#7a7a7a"><path d="M9.992 10.023c0 .2-.062.399-.172.547l-4.996 7.492a.982.982 0 01-.828.454H1c-.55 0-1-.453-1-1 0-.2.059-.403.168-.551l4.629-6.942L.168 3.078A.939.939 0 010 2.528c0-.548.45-.997 1-.997h2.996c.352 0 .649.18.828.45L9.82 9.472c.11.148.172.347.172.55zm0 0"></path><path d="M19.98 10.023c0 .2-.058.399-.168.547l-4.996 7.492a.987.987 0 01-.828.454h-3c-.547 0-.996-.453-.996-1 0-.2.059-.403.168-.551l4.625-6.942-4.625-6.945a.939.939 0 01-.168-.55 1 1 0 01.996-.997h3c.348 0 .649.18.828.45l4.996 7.492c.11.148.168.347.168.55zm0 0"></path></g></svg></button></div></div><main class="docMainContainer_28N5"><div class="container padding-vert--lg"><div class="row"><div class="col docItemCol_3WPG"><div class="docItemContainer_3XDu"><article><div class="member_qHIL markdown"><div class="tocCollapsible_1PrD theme-doc-toc-mobile tocMobile_3ryM"><button type="button" class="clean-btn tocCollapsibleButton_2O1e">On this page</button></div><header><h1 class="docTitle_1ddc" style="text-decoration:none"><span style="display:inline-block">Maid</span></h1><div class="luaClassTags_2Zrs"></div><div>
+<p>Maids track Tasks and clean them when needed.</p>
+<p>For e.g:</p>
+<pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> maid <span class="token operator">=</span> Maid<span class="token punctuation">.</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">local</span> connection <span class="token operator">=</span> workspace<span class="token punctuation">.</span>ChildAdded<span class="token punctuation">:</span><span class="token function">Connect</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">end</span><span class="token punctuation">)</span>
+maid<span class="token punctuation">:</span><span class="token function">Add</span><span class="token punctuation">(</span>connection<span class="token punctuation">)</span>
+maid<span class="token punctuation">:</span><span class="token function">Cleanup</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment">-- Connections aren't necessarily immediately disconnected when `Disconnect` is called on the.</span>
+<span class="token comment">-- Much reliable to check in the next engine execution step:</span>
+task<span class="token punctuation">.</span><span class="token function">defer</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	<span class="token function">print</span><span class="token punctuation">(</span>connection<span class="token punctuation">.</span>Connected<span class="token punctuation">)</span> <span class="token comment">--> false</span>
+<span class="token keyword">end</span><span class="token punctuation">)</span>
+</code></pre>
+</div></header><h2><a aria-hidden="true" tabindex="-1" class="anchor anchor__h2 anchorWithStickyNavbar_31ik" id="functions"></a>Functions<a class="hash-link" href="#functions" title="Direct link to heading">#</a></h2><div class="divider_3z1R"></div><h3><a aria-hidden="true" tabindex="-1" class="anchor anchor__h3 anchorWithStickyNavbar_31ik" id="new"></a><code style="text-decoration:none">new</code><a class="hash-link" href="#new" title="Direct link to heading">#</a></h3><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/flamenco687/Maid/blob/master/src/Maid.lua#L85"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>Maid.</code><code class="green_3LnD">new</code><code>(</code><code>) → </code><code class="blue_2Afy">Maid</code></div><div>
+<p>A constructor method which creates a new maid.</p>
+</div><div class="divider_3z1R"></div><h3><a aria-hidden="true" tabindex="-1" class="anchor anchor__h3 anchorWithStickyNavbar_31ik" id="IsMaid"></a><code style="text-decoration:none">IsMaid</code><a class="hash-link" href="#IsMaid" title="Direct link to heading">#</a></h3><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/flamenco687/Maid/blob/master/src/Maid.lua#L98"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>Maid.</code><code class="green_3LnD">IsMaid</code><code>(</code><code>self: </code><code class="blue_2Afy">any</code><code>) → </code><code class="blue_2Afy">boolean</code></div><div>
+<p>A method which is used to check if the given argument is a maid or not.</p>
+</div><div class="divider_3z1R"></div><h3><a aria-hidden="true" tabindex="-1" class="anchor anchor__h3 anchorWithStickyNavbar_31ik" id="Add"></a><code style="text-decoration:none">Add</code><a class="hash-link" href="#Add" title="Direct link to heading">#</a></h3><span class="docTag_3qMS" style="border-color:#ff5252;color:#ff5252">Maid</span><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/flamenco687/Maid/blob/master/src/Maid.lua#L110"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>Maid:</code><code class="green_3LnD">Add</code><code>(</code><code>Task: </code><code class="blue_2Afy">function</code><code class="op_1JtD"> | </code><code class="blue_2Afy">RBXScriptConnection</code><code class="op_1JtD"> | </code><code class="blue_2Afy">table</code><code class="op_1JtD"> | </code><code class="blue_2Afy">Instance</code><code>) → </code><code class="blue_2Afy">Task</code></div><div>
+<p>Adds a Task for the maid to cleanup. Note that <code>table</code> must have a <code>Destroy</code> or <code>Disconnect</code> method.</p>
+</div><div class="divider_3z1R"></div><h3><a aria-hidden="true" tabindex="-1" class="anchor anchor__h3 anchorWithStickyNavbar_31ik" id="Remove"></a><code style="text-decoration:none">Remove</code><a class="hash-link" href="#Remove" title="Direct link to heading">#</a></h3><span class="docTag_3qMS" style="border-color:#ff5252;color:#ff5252">Maid</span><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/flamenco687/Maid/blob/master/src/Maid.lua#L137"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>Maid:</code><code class="green_3LnD">Remove</code><code>(</code><code>Task: </code><code class="blue_2Afy">function</code><code class="op_1JtD"> | </code><code class="blue_2Afy">RBXScriptConnection</code><code class="op_1JtD"> | </code><code class="blue_2Afy">table</code><code class="op_1JtD"> | </code><code class="blue_2Afy">Instance</code><code>) → </code><code>(</code><code>)</code></div><div>
+<p>Removes the Task so that it will not be cleaned up.</p>
+</div><div class="divider_3z1R"></div><h3><a aria-hidden="true" tabindex="-1" class="anchor anchor__h3 anchorWithStickyNavbar_31ik" id="Cleanup"></a><code style="text-decoration:none">Cleanup</code><a class="hash-link" href="#Cleanup" title="Direct link to heading">#</a></h3><span class="docTag_3qMS" style="border-color:#ff5252;color:#ff5252">Maid</span><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/flamenco687/Maid/blob/master/src/Maid.lua#L153"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>Maid:</code><code class="green_3LnD">Cleanup</code><code>(</code><code>) → </code><code>(</code><code>)</code></div><div>
+<p>Cleans up all the added Tasks.</p>
+<table>
+  <thead>
+    <tr>
+      <th>Task</th>
+      <th>Type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>function</code></td>
+      <td>The function will be called.</td>
+    </tr>
+    <tr>
+      <td><code>table</code></td>
+      <td>Any <code>Destroy</code> or <code>Disconnect</code> method in the table will be called.</td>
+    </tr>
+    <tr>
+      <td><code>Instance</code></td>
+      <td>The Instance will be destroyed.</td>
+    </tr>
+    <tr>
+      <td><code>RBXScriptConnection</code></td>
+      <td>The connection will be disconnected.</td>
+    </tr>
+  </tbody>
+</table>
+</div><div class="divider_3z1R"></div><h3><a aria-hidden="true" tabindex="-1" class="anchor anchor__h3 anchorWithStickyNavbar_31ik" id="End"></a><code style="text-decoration:none">End</code><a class="hash-link" href="#End" title="Direct link to heading">#</a></h3><span class="docTag_3qMS" style="border-color:#ff5252;color:#ff5252">Maid</span><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/flamenco687/Maid/blob/master/src/Maid.lua#L177"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>Maid:</code><code class="green_3LnD">End</code><code>(</code><div class="inset_2cJr"><div><code>Task: </code><code class="blue_2Afy">function</code><code class="op_1JtD"> | </code><code class="blue_2Afy">RBXScriptConnection</code><code class="op_1JtD"> | </code><code class="blue_2Afy">table</code><code class="op_1JtD"> | </code><code class="blue_2Afy">Instance</code><span class="inlineDescription_17uy">-- <span>
+<p>Task to disconnect</p>
+</span></span></div></div><code>) → </code><code>(</code><code>)</code></div><div>
+<p>Disconnect a specific Task</p>
+</div><div class="divider_3z1R"></div><h3><a aria-hidden="true" tabindex="-1" class="anchor anchor__h3 anchorWithStickyNavbar_31ik" id="Destroy"></a><code style="text-decoration:none">Destroy</code><a class="hash-link" href="#Destroy" title="Direct link to heading">#</a></h3><span class="docTag_3qMS" style="border-color:#ff5252;color:#ff5252">Maid</span><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/flamenco687/Maid/blob/master/src/Maid.lua#L193"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>Maid:</code><code class="green_3LnD">Destroy</code><code>(</code><code>) → </code><code>(</code><code>)</code></div><div>
+<p>
+  Destroys the maid by first cleaning up all Tasks, and then setting all the Keys in it to <code>nil</code>
+  and lastly, sets the metatable of the maid to <code>nil</code>.
+</p>
+<div class="admonition admonition-warning alert alert--danger">
+  <div class="admonition-heading">
+    <h5><span class="admonition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="16" viewBox="0 0 12 16">
+          <path d="M5.05.31c.81 2.17.41 3.38-.52 4.31C3.55 5.67 1.98 6.45.9 7.98c-1.45 2.05-1.7 6.53 3.53 7.7-2.2-1.16-2.67-4.52-.3-6.61-.61 2.03.53 3.33 1.94 2.86 1.39-.47 2.3.53 2.27 1.67-.02.78-.31 1.44-1.13 1.81 3.42-.59 4.78-3.42 4.78-5.56 0-2.84-2.53-3.22-1.25-5.61-1.52.13-2.03 1.13-1.89 2.75.09 1.08-1.02 1.8-1.86 1.33-.67-.41-.66-1.19-.06-1.78C8.18 5.31 8.68 2.45 5.05.32L5.03.3l.02.01z"></path>
+        </svg></span>warning</h5>
+  </div>
+  <div class="admonition-content">
+    <p>Trivial errors will occur if your code unintentionally works on a destroyed maid, only call this method when you're done working with the maid.</p>
+  </div>
+</div>
+</div><div class="divider_3z1R"></div><h3><a aria-hidden="true" tabindex="-1" class="anchor anchor__h3 anchorWithStickyNavbar_31ik" id="LinkToInstance"></a><code style="text-decoration:none">LinkToInstance</code><a class="hash-link" href="#LinkToInstance" title="Direct link to heading">#</a></h3><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/flamenco687/Maid/blob/master/src/Maid.lua#L235"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>Maid:</code><code class="green_3LnD">LinkToInstance</code><code>(</code><code>Instance: </code><code class="blue_2Afy">Instance</code><code>) → </code><code class="blue_2Afy">Connection</code></div><div>
+<p>
+  Links the given Instance to the maid so that the maid will clean up all the Tasks once the Instance has been destroyed
+  via <code>Instance:Destroy</code>. The connection returned by this maid contains the following methods:
+</p>
+<table>
+  <thead>
+    <tr>
+      <th>Methods</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>Disconnect</code></td>
+      <td>The connection will be disconnected and the maid will unlink to the Instance it was linked to.</td>
+    </tr>
+    <tr>
+      <td><code>IsConnected</code></td>
+      <td>Returns a boolean indicating if the connection has been disconnected.</td>
+    </tr>
+  </tbody>
+</table>
+<p>Note that the maid will still unlink to the given Instance if it has been cleaned up!</p>
+</div></div></article></div><details><summary>Show raw api</summary><pre style="max-width:100%;white-space:pre-wrap">{
+    &quot;functions&quot;: [
+        {
+            &quot;name&quot;: &quot;new&quot;,
+            &quot;desc&quot;: &quot;A constructor method which creates a new maid.&quot;,
+            &quot;params&quot;: [],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;Maid&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;static&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 85,
+                &quot;path&quot;: &quot;src/Maid.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;IsMaid&quot;,
+            &quot;desc&quot;: &quot;A method which is used to check if the given argument is a maid or not.&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;self&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;any&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;boolean&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;static&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 98,
+                &quot;path&quot;: &quot;src/Maid.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;Add&quot;,
+            &quot;desc&quot;: &quot;Adds a Task for the maid to cleanup. Note that `table` must have a `Destroy` or `Disconnect` method.&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;Task&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;function | RBXScriptConnection | table | Instance&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;Task&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;tags&quot;: [
+                &quot;Maid&quot;
+            ],
+            &quot;source&quot;: {
+                &quot;line&quot;: 110,
+                &quot;path&quot;: &quot;src/Maid.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;Remove&quot;,
+            &quot;desc&quot;: &quot;Removes the Task so that it will not be cleaned up.&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;Task&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;function | RBXScriptConnection | table | Instance&quot;
+                }
+            ],
+            &quot;returns&quot;: [],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;tags&quot;: [
+                &quot;Maid&quot;
+            ],
+            &quot;source&quot;: {
+                &quot;line&quot;: 137,
+                &quot;path&quot;: &quot;src/Maid.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;Cleanup&quot;,
+            &quot;desc&quot;: &quot;Cleans up all the added Tasks.\n\n| Task      | Type                          |\n| ----------- | ------------------------------------ |\n| `function`  | The function will be called.  |\n| `table`     | Any `Destroy` or `Disconnect` method in the table will be called. |\n| `Instance`    | The Instance will be destroyed. |\n| `RBXScriptConnection`    | The connection will be disconnected. |&quot;,
+            &quot;params&quot;: [],
+            &quot;returns&quot;: [],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;tags&quot;: [
+                &quot;Maid&quot;
+            ],
+            &quot;source&quot;: {
+                &quot;line&quot;: 153,
+                &quot;path&quot;: &quot;src/Maid.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;End&quot;,
+            &quot;desc&quot;: &quot;Disconnect a specific Task&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;Task&quot;,
+                    &quot;desc&quot;: &quot;Task to disconnect&quot;,
+                    &quot;lua_type&quot;: &quot;function | RBXScriptConnection | table | Instance&quot;
+                }
+            ],
+            &quot;returns&quot;: [],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;tags&quot;: [
+                &quot;Maid&quot;
+            ],
+            &quot;source&quot;: {
+                &quot;line&quot;: 177,
+                &quot;path&quot;: &quot;src/Maid.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;Destroy&quot;,
+            &quot;desc&quot;: &quot;Destroys the maid by first cleaning up all Tasks, and then setting all the Keys in it to `nil`\nand lastly, sets the metatable of the maid to `nil`.\n\n:::warning\nTrivial errors will occur if your code unintentionally works on a destroyed maid, only call this method when you&#x27;re done working with the maid.\n:::&quot;,
+            &quot;params&quot;: [],
+            &quot;returns&quot;: [],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;tags&quot;: [
+                &quot;Maid&quot;
+            ],
+            &quot;source&quot;: {
+                &quot;line&quot;: 193,
+                &quot;path&quot;: &quot;src/Maid.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;LinkToInstance&quot;,
+            &quot;desc&quot;: &quot;Links the given Instance to the maid so that the maid will clean up all the Tasks once the Instance has been destroyed\nvia `Instance:Destroy`. The connection returned by this maid contains the following methods:\n\n| Methods      | Description                          |\n| ----------- | ------------------------------------ |\n| `Disconnect`  | The connection will be disconnected and the maid will unlink to the Instance it was linked to.  |\n| `IsConnected` | Returns a boolean indicating if the connection has been disconnected. |\n\nNote that the maid will still unlink to the given Instance if it has been cleaned up!&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;Instance&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;Instance&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;Connection&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 235,
+                &quot;path&quot;: &quot;src/Maid.lua&quot;
+            }
+        }
+    ],
+    &quot;properties&quot;: [],
+    &quot;types&quot;: [],
+    &quot;name&quot;: &quot;Maid&quot;,
+    &quot;desc&quot;: &quot;Maids track Tasks and clean them when needed.\n\nFor e.g:\n```lua\nlocal maid = Maid.new()\nlocal connection = workspace.ChildAdded:Connect(function()\n\nend)\nmaid:Add(connection)\nmaid:Cleanup()\n\n-- Connections aren&#x27;t necessarily immediately disconnected when `Disconnect` is called on the.\n-- Much reliable to check in the next engine execution step:\ntask.defer(function()\n\tprint(connection.Connected) --&gt; false\nend)\n```&quot;,
+    &quot;source&quot;: {
+        &quot;line&quot;: 42,
+        &quot;path&quot;: &quot;src/Maid.lua&quot;
+    }
+}</pre></details></div><div class="col col--3"><div class="tableOfContents_35-E thin-scrollbar"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#types" class="table-of-contents__link">Types</a></li><li><a href="#properties" class="table-of-contents__link">Properties</a></li><li><a href="#functions" class="table-of-contents__link">Functions</a><ul><li><a href="#Add" class="table-of-contents__link">:Add</a></li><li><a href="#Cleanup" class="table-of-contents__link">:Cleanup</a></li><li><a href="#Destroy" class="table-of-contents__link">:Destroy</a></li><li><a href="#End" class="table-of-contents__link">:End</a></li><li><a href="#LinkToInstance" class="table-of-contents__link">:LinkToInstance</a></li><li><a href="#Remove" class="table-of-contents__link">:Remove</a></li><li><a href="#IsMaid" class="table-of-contents__link">.IsMaid</a></li><li><a href="#new" class="table-of-contents__link">.new</a></li></ul></li></ul></div></div></div></div></main></div></div><footer class="footer footer--dark"><div class="container"><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2021 flamenco687. Built with Moonwave and Docusaurus.</div></div></div></footer></div>
+<script src="/Maid/assets/js/runtime~main.8168edb9.js"></script>
+<script src="/Maid/assets/js/main.f6146939.js"></script>
+</body>
+</html>
