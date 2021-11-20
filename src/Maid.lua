@@ -172,7 +172,7 @@ end
 
 	Disconnect a specific Task
 
-	@param Task -- Task to disconnect
+	@param Task function | RBXScriptConnection | table | Instance -- Task to disconnect
 ]=]
 
 function Maid:End(Task)

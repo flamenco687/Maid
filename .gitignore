@@ -6,5 +6,7 @@
 /*.rbxl.lock
 /wally.lock
 
+/build
+
 /*.project.json
 /foreman.toml
