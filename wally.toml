@@ -2,7 +2,7 @@
 name = "flamenco687/maid"
 description = "Roblox library to manage connections and tasks"
 
-version = "1.4.0"
+version = "1.4.1"
 license = "Apache 2.0"
 
 authors = ["flamenco687", "finobinos"]
