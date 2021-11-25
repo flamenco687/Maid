@@ -40,10 +40,18 @@
 	```
 ]=]
 
+local Players = game:GetService("Players")
+
+type Maid = {
+	_Tasks: table,
+}
+
+type ManualConnection = {
+	_IsConnected: boolean,
+}
+
 local Maid = {}
 Maid.__index = Maid
-
-local Players = game:GetService("Players")
 
 local LocalConstants = {
 	ErrorMessages = {
@@ -51,7 +59,7 @@ local LocalConstants = {
 	},
 }
 
-local function IsInstanceDestroyed(Instance)
+local function IsInstanceDestroyed(Instance: Instance): (number & number)?
 	-- This function call is used to determine if an Instance is ALREADY destroyed,
 	-- and has been edited to be more reliable but still quite hacky due to Roblox
 	-- not giving us a method to determine if an Instance is already destroyed
@@ -62,7 +70,7 @@ local function IsInstanceDestroyed(Instance)
 	return (Response:find("locked") and Response:find("NULL") or nil) ~= nil
 end
 
-local function DisconnectTask(Task)
+local function DisconnectTask(Task: any | RBXScriptConnection | table | Instance)
 	if typeof(Task) == "function" then
 		Task()
 	elseif typeof(Task) == "RBXScriptConnection" then
@@ -83,21 +91,32 @@ end
 	@return Maid
 ]=]
 
-function Maid.new()
+function Maid.new(): Maid
 	return setmetatable({
 		_Tasks = {},
 	}, Maid)
 end
 
 --[=[
-	A method which is used to check if the given argument is a maid or not.
+	Checks if the given argument is a maid or not.
 
 	@param self any
 	@return boolean
 ]=]
 
-function Maid.IsMaid(self)
+function Maid.IsMaid(self: table): boolean
 	return getmetatable(self) == Maid
+end
+
+--[=[
+	Checks the "classname" of the given argument.
+
+	@param self any
+	@return boolean
+]=]
+
+function Maid.Is(self: table): string & Maid
+	return "Maid", getmetatable(self)
 end
 
 --[=[
@@ -108,7 +127,7 @@ end
 	@return Task
 ]=]
 
-function Maid:Add(Task)
+function Maid:Add(Task: any | RBXScriptConnection | table | Instance)
 	assert(
 		typeof(Task) == "function"
 			or typeof(Task) == "RBXScriptConnection"
@@ -135,7 +154,7 @@ end
 	@param Task function | RBXScriptConnection | table | Instance
 ]=]
 
-function Maid:Remove(Task)
+function Maid:Remove(Task: any | RBXScriptConnection | table | Instance)
 	self._Tasks[Task] = nil
 end
 
@@ -170,12 +189,12 @@ end
 --[=[
 	@tag Maid
 
-	Disconnect a specific Task
+	Disconnects a specific Task
 
 	@param Task function | RBXScriptConnection | table | Instance -- Task to disconnect
 ]=]
 
-function Maid:End(Task)
+function Maid:End(Task: any | RBXScriptConnection | table | Instance)
 	self._Tasks[Task] = nil
 	DisconnectTask(Task)
 end
@@ -205,7 +224,7 @@ local ManualConnection = {}
 ManualConnection.__index = ManualConnection
 
 do
-	function ManualConnection.new()
+	function ManualConnection.new(): ManualConnection
 		return setmetatable({ _IsConnected = true }, ManualConnection)
 	end
 
@@ -213,7 +232,7 @@ do
 		self._IsConnected = false
 	end
 
-	function ManualConnection:IsConnected()
+	function ManualConnection:IsConnected(): boolean
 		return self._IsConnected
 	end
 end
@@ -233,21 +252,21 @@ end
 	@return Connection
 ]=]
 
-function Maid:LinkToInstance(Instance)
+function Maid:LinkToInstance(Instance: Instance)
 	assert(
 		typeof(Instance) == "Instance",
 		LocalConstants.ErrorMessages.InvalidArgument:format(1, "Maid:LinkToInstance()", "Instance", typeof(Instance))
 	)
 
-	local ManualConnection = ManualConnection.new()
-	self:Add(ManualConnection)
+	local NewManualConnection = ManualConnection.new()
+	self:Add(NewManualConnection)
 
-	local function TrackInstanceConnectionForCleanup(MainConnection)
-		while MainConnection.Connected and not Instance.Parent and ManualConnection:IsConnected() do
+	local function TrackInstanceConnectionForCleanup(MainConnection: RBXScriptConnection)
+		while MainConnection.Connected and not Instance.Parent and NewManualConnection:IsConnected() do
 			task.wait()
 		end
 
-		if not Instance.Parent and ManualConnection:IsConnected() then
+		if not Instance.Parent and NewManualConnection:IsConnected() then
 			self:Cleanup()
 		end
 	end
@@ -256,7 +275,7 @@ function Maid:LinkToInstance(Instance)
 	MainConnection = self:Add(Instance:GetPropertyChangedSignal("Parent"):Connect(function()
 		if not Instance.Parent then
 			task.defer(function()
-				if not ManualConnection:IsConnected() then
+				if not NewManualConnection:IsConnected() then
 					return
 				end
 
@@ -276,8 +295,8 @@ function Maid:LinkToInstance(Instance)
 
 	-- Special case for players as they are destroyed late when they leave
 	if Instance:IsA("Player") then
-		self:Add(Players.PlayerRemoving:Connect(function(RemovedPlayer)
-			if Instance == RemovedPlayer and ManualConnection:IsConnected() then
+		self:Add(Players.PlayerRemoving:Connect(function(RemovedPlayer: Player)
+			if Instance == RemovedPlayer and NewManualConnection:IsConnected() then
 				self:Cleanup()
 			end
 		end))
@@ -291,7 +310,7 @@ function Maid:LinkToInstance(Instance)
 		self:Cleanup()
 	end
 
-	return ManualConnection
+	return NewManualConnection
 end
 
 return Maid
