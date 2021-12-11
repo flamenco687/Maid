@@ -42,12 +42,12 @@
 
 local Players = game:GetService("Players")
 
-type Maid = {
-	_Tasks: table,
-}
-
 type ManualConnection = {
 	_IsConnected: boolean,
+}
+
+export type Maid = {
+	_Tasks: table,
 }
 
 local Maid = {}
@@ -59,7 +59,7 @@ local LocalConstants = {
 	},
 }
 
-local function IsInstanceDestroyed(Instance: Instance): (number & number)?
+local function IsInstanceDestroyed(Instance: Instance): boolean
 	-- This function call is used to determine if an Instance is ALREADY destroyed,
 	-- and has been edited to be more reliable but still quite hacky due to Roblox
 	-- not giving us a method to determine if an Instance is already destroyed
@@ -70,7 +70,7 @@ local function IsInstanceDestroyed(Instance: Instance): (number & number)?
 	return (Response:find("locked") and Response:find("NULL") or nil) ~= nil
 end
 
-local function DisconnectTask(Task: any | RBXScriptConnection | table | Instance)
+local function DisconnectTask(Task: RBXScriptConnection | table | Instance | any)
 	if typeof(Task) == "function" then
 		Task()
 	elseif typeof(Task) == "RBXScriptConnection" then
@@ -115,7 +115,7 @@ end
 	@return boolean
 ]=]
 
-function Maid.Is(self: table): string & Maid
+function Maid.Is(self: table): (string, Maid)
 	return "Maid", getmetatable(self)
 end
 
@@ -127,7 +127,7 @@ end
 	@return Task
 ]=]
 
-function Maid:Add(Task: any | RBXScriptConnection | table | Instance)
+function Maid:Add(Task: RBXScriptConnection | table | Instance | any)
 	assert(
 		typeof(Task) == "function"
 			or typeof(Task) == "RBXScriptConnection"
@@ -154,7 +154,7 @@ end
 	@param Task function | RBXScriptConnection | table | Instance
 ]=]
 
-function Maid:Remove(Task: any | RBXScriptConnection | table | Instance)
+function Maid:Remove(Task: RBXScriptConnection | table | Instance | any)
 	self._Tasks[Task] = nil
 end
 
@@ -194,7 +194,7 @@ end
 	@param Task function | RBXScriptConnection | table | Instance -- Task to disconnect
 ]=]
 
-function Maid:End(Task: any | RBXScriptConnection | table | Instance)
+function Maid:End(Task: RBXScriptConnection | table | Instance | any)
 	self._Tasks[Task] = nil
 	DisconnectTask(Task)
 end
@@ -210,14 +210,13 @@ end
 	:::
 ]=]
 
-function Maid:Destroy()
+function Maid:Destroy(): nil
 	self:Cleanup()
 
-	for Key, _ in pairs(self) do
-		self[Key] = nil
-	end
-
 	setmetatable(self, nil)
+	self = nil
+
+	return nil
 end
 
 local ManualConnection = {}
@@ -252,7 +251,7 @@ end
 	@return Connection
 ]=]
 
-function Maid:LinkToInstance(Instance: Instance)
+function Maid:LinkToInstance(Instance: Instance): ManualConnection
 	assert(
 		typeof(Instance) == "Instance",
 		LocalConstants.ErrorMessages.InvalidArgument:format(1, "Maid:LinkToInstance()", "Instance", typeof(Instance))

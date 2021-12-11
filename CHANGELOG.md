@@ -1,3 +1,12 @@
+## [1.5.1] - 2021-12-11
+
+### Changed
+- Maid type is now exported instead of only local
+
+### Fixed
+- Some type annotations were not written correctly
+- `IsInstanceDestroyed()` returned value type was wrong
+
 ## [1.5.0] - 2021-11-25
 
 ### Added
